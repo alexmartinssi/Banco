@@ -21,18 +21,13 @@ public class RepositorioConta {
 
    }
 
-    public boolean existeConta(int numConta){
-
-        boolean f = true;
-
-        for (Conta c: clientes) {
-
-            if(cpf.equals(c.getCPF())){
-                f = false;
-                break;
+    public boolean existeConta(int numConta) {
+        boolean f = false;
+        for(Conta conta : contas){
+            if(numConta == conta.getNumConta()){
+                f = true;
             }
         }
-
         return f;
     }
 

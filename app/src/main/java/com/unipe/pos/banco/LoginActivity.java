@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
@@ -43,10 +44,18 @@ public class LoginActivity extends AppCompatActivity {
                     alert("Preencha o campo senha");
                 }
 
-                else if(!r.existeLogin(emailCliente,senhaCliente)){
+                Cliente cliente = r.existeLogin(emailCliente,senhaCliente);
+
+                if (cliente == null){
                     alert("Login ou senha inválido ou não cadastrado.");
                 }else{
-                    startActivity(new Intent(LoginActivity.this,BancoActivity.class));
+
+                    Intent intent = new Intent(LoginActivity.this,BancoActivity.class);
+
+                    intent.putExtra("cliente", (Serializable) cliente);
+
+                    startActivity(intent);
+
                 }
 
 

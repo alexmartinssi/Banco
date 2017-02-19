@@ -29,19 +29,16 @@ public class  RepositorioCliente {
         return f;
     }
 
-    public boolean existeLogin(String email, String senha){
-
-        boolean f = false;
+    public Cliente existeLogin(String email, String senha){
 
         for (Cliente c: clientes) {
 
             if(email.equals(c.getEmail()) && senha.equals(c.getSenha())){
-                f = true;
-                break;
+                return c;
             }
         }
 
-        return f;
+        return null;
     }
 
     public void cadastrar(Cliente c){

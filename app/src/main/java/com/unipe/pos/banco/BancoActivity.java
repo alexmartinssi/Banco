@@ -6,24 +6,30 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import java.io.Serializable;
+
 public class BancoActivity extends AppCompatActivity {
 
-    private ImageView botaoConta;
-
+    private ImageView novaConta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_banco);
 
-        botaoConta = (ImageView) findViewById(R.id.botaoContaId);
+        novaConta = (ImageView) findViewById(R.id.novaContaId);
 
-
-        botaoConta.setOnClickListener(new View.OnClickListener() {
+        novaConta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(BancoActivity.this,ContaActivity.class));
+                Cliente cliente = (Cliente) getIntent().getSerializableExtra("cliente");
+
+                Intent intent = new Intent(BancoActivity.this,ContaActivity.class);
+
+                intent.putExtra("cliente", (Serializable) cliente);
+
+                startActivity(intent);
             }
         });
     }
