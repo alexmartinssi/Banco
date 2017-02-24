@@ -11,29 +11,55 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.unipe.pos.banco.BancoActivity"
-    android:weightSum="1">
+    android:weightSum="1"
+    tools:context="com.unipe.pos.banco.BancoActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/loginId"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="nome"
+            android:textSize="15dp"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/sairId"
+            android:layout_toStartOf="@+id/sairId" />
+
+        <TextView
+            android:id="@+id/sairId"
+            android:layout_width="34dp"
+            android:textSize="15dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="28dp"
+            android:layout_marginRight="28dp"
+            android:text="Sair"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
         <ImageButton
             android:id="@+id/logo_banco"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:srcCompat="@drawable/logo_banco" />
+            app:srcCompat="@drawable/logo_banco"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/loginId"
+            android:layout_toStartOf="@+id/loginId"
+            android:layout_marginRight="55dp"
+            android:layout_marginEnd="55dp" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="244dp"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="1"
-        android:layout_weight="0.55">
+        android:weightSum="1">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -45,111 +71,125 @@
                 android:id="@+id/saque"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sacar"
-                android:gravity="center"
-                android:layout_marginRight="54dp"
-                android:layout_marginEnd="54dp"
-                android:layout_below="@+id/saqueId"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_below="@+id/saqueId"
+                android:layout_marginEnd="54dp"
+                android:layout_marginRight="54dp"
+                android:gravity="center"
+                android:text="Sacar" />
 
             <ImageView
                 android:id="@+id/saqueId"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/saque_icon"
                 android:adjustViewBounds="false"
                 android:background="@drawable/image_border"
-                android:layout_marginRight="32dp"
-                android:layout_marginEnd="32dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                app:srcCompat="@drawable/saque_icon" />
 
             <TextView
                 android:id="@+id/depositar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Depositar"
-                android:gravity="center"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/depositarId"
                 android:layout_marginLeft="70dp"
                 android:layout_marginStart="40dp"
-                android:layout_below="@+id/depositarId"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:gravity="center"
+                android:text="Depositar" />
 
             <ImageView
                 android:id="@+id/depositarId"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
+                android:layout_alignLeft="@+id/depositar"
+                android:layout_alignParentTop="true"
+                android:layout_alignStart="@+id/depositar"
                 android:layout_weight="1"
                 android:background="@drawable/image_border"
-                app:srcCompat="@drawable/pagar"
                 android:gravity="center"
-                android:layout_alignParentTop="true"
-                android:layout_alignLeft="@+id/depositar"
-                android:layout_alignStart="@+id/depositar" />
+                app:srcCompat="@drawable/pagar" />
 
 
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="191dp"
             android:layout_marginTop="50dp"
-            android:orientation="horizontal"
-            android:layout_weight="0.61">
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/consultarSaldoId"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_weight="1"
-                android:background="@drawable/image_border"
-                app:srcCompat="@drawable/saldo_icon"
-                android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:layout_marginLeft="39dp"
-                android:layout_marginStart="39dp" />
+                android:layout_marginStart="39dp"
+                android:layout_weight="1"
+                android:background="@drawable/image_border"
+                app:srcCompat="@drawable/saldo_icon" />
 
             <ImageView
                 android:id="@+id/tranferirId"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="34dp"
+                android:layout_marginRight="34dp"
                 android:layout_weight="1"
                 android:background="@drawable/image_border"
-                app:srcCompat="@drawable/extrato"
-                android:layout_marginRight="34dp"
-                android:layout_marginEnd="34dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                app:srcCompat="@drawable/extrato" />
 
             <TextView
                 android:id="@+id/transferir"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Transferir"
-                android:gravity="center"
-                android:layout_below="@+id/tranferirId"
                 android:layout_alignLeft="@+id/tranferirId"
                 android:layout_alignStart="@+id/tranferirId"
+                android:layout_below="@+id/tranferirId"
                 android:layout_marginLeft="14dp"
-                android:layout_marginStart="14dp" />
+                android:layout_marginStart="14dp"
+                android:gravity="center"
+                android:text="Transferir" />
 
             <TextView
                 android:id="@+id/consultarSaldo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Consultar Saldo"
-                android:layout_below="@+id/consultarSaldoId"
                 android:layout_alignLeft="@+id/consultarSaldoId"
-                android:layout_alignStart="@+id/consultarSaldoId" />
+                android:layout_alignStart="@+id/consultarSaldoId"
+                android:layout_below="@+id/consultarSaldoId"
+                android:text="Consultar Saldo" />
+
+            <ImageView
+                android:id="@+id/novaContaId"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/add_conta"
+                android:layout_below="@+id/transferir"
+                android:layout_alignLeft="@+id/transferir"
+                android:layout_alignStart="@+id/transferir"
+                android:layout_marginTop="20dp" />
 
         </RelativeLayout>
 
     </LinearLayout>
+
+
+
+
+
 
 </LinearLayout>

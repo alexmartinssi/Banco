@@ -18,7 +18,10 @@ public class BancoActivity extends AppCompatActivity{
     private ImageView realizarSaque;
     private ImageView consultarSaldo;
     private ImageView transferir;
-
+    private TextView logout;
+    private TextView login;
+    private ImageView novaConta;
+    private Cliente cliente;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,16 +31,23 @@ public class BancoActivity extends AppCompatActivity{
         realizarSaque = (ImageView) findViewById(R.id.saqueId);
         consultarSaldo = (ImageView) findViewById(R.id.consultarSaldoId);
         transferir = (ImageView) findViewById(R.id.tranferirId);
+        novaConta = (ImageView) findViewById(R.id.novaContaId);
+        logout = (TextView) findViewById(R.id.sairId);
+        login = (TextView) findViewById(R.id.loginId);
+
+
+        cliente = (Cliente) getIntent().getSerializableExtra("cliente");
+        login.setText(cliente.getLogin()+",");
 
         depositar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                ArrayList<Conta> contas = (ArrayList<Conta>) getIntent().getSerializableExtra("contas");
+                cliente = (Cliente) getIntent().getSerializableExtra("cliente");
 
-                Intent intent = new Intent(BancoActivity.this,ConsultarSaldoActivity.class);
+                Intent intent = new Intent(BancoActivity.this,DepositarActivity.class);
 
-                intent.putExtra("contas", contas);
+                intent.putExtra("cliente",cliente);
 
                 startActivity(intent);
             }
@@ -47,11 +57,11 @@ public class BancoActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
 
-                ArrayList<Conta> contas = (ArrayList<Conta>) getIntent().getSerializableExtra("contas");
+                cliente = (Cliente) getIntent().getSerializableExtra("cliente");
 
                 Intent intent = new Intent(BancoActivity.this,ConsultarSaldoActivity.class);
 
-                intent.putExtra("contas", contas);
+                intent.putExtra("cliente",cliente);
 
                 startActivity(intent);
             }
@@ -61,11 +71,11 @@ public class BancoActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
 
-                Cliente cliente = (Cliente) getIntent().getSerializableExtra("cliente");
+                cliente = (Cliente) getIntent().getSerializableExtra("cliente");
 
-                Intent intent = new Intent(BancoActivity.this,ConsultarSaldoActivity.class);
+                Intent intent = new Intent(BancoActivity.this,RealizarSaqueActivity.class);
 
-                intent.putExtra("cliente", cliente);
+                intent.putExtra("cliente",cliente);
 
                 startActivity(intent);
             }
@@ -75,11 +85,35 @@ public class BancoActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
 
-                Cliente cliente = (Cliente) getIntent().getSerializableExtra("cliente");
+                cliente = (Cliente) getIntent().getSerializableExtra("cliente");
 
-                Intent intent = new Intent(BancoActivity.this,ConsultarSaldoActivity.class);
+                Intent intent = new Intent(BancoActivity.this,TransferirActivity.class);
 
-                intent.putExtra("cliente", cliente);
+                intent.putExtra("cliente",cliente);
+
+                startActivity(intent);
+            }
+        });
+
+        novaConta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                cliente = (Cliente) getIntent().getSerializableExtra("cliente");
+
+                Intent intent = new Intent(BancoActivity.this,NovaContaActivity.class);
+
+                intent.putExtra("cliente",cliente);
+
+                startActivity(intent);
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(BancoActivity.this,LoginActivity.class);
 
                 startActivity(intent);
             }

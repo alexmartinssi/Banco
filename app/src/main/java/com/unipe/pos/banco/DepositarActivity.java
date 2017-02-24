@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -27,16 +28,41 @@ public class DepositarActivity extends AppCompatActivity {
         botaoDepositar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ArrayList<Conta> contas = (ArrayList<Conta>) getIntent().getSerializableExtra("contas");
+
+                String numeroConta = numConta.getText().toString();
+                String valorDoDeposito = valor.getText().toString();
 
 
+                if (numeroConta.isEmpty()) {
+                    alert("Preencha o número da conta.");
+                } else if (valorDoDeposito.isEmpty()) {
+                    alert("Preencha o valor a ser depositado.");
 
-                Intent intent = new Intent(BancoActivity.this,ConsultarSaldoActivity.class);
+                }else{
 
-                intent.putExtra("contas", contas);
+                    RepositorioConta repositorioConta = RepositorioConta.getInstance();
 
-                startActivity(intent);
+                    boolean depositado = repositorioConta.depositar(Integer.parseInt(numeroConta), Double.parseDouble(valorDoDeposito));
+
+                    if (depositado) {
+                        alert("Deposito realizado.");
+                    } else {
+                        alert("Falha no deposito.");
+                    }
+
+                    Intent intent = new Intent(DepositarActivity.this, BancoActivity.class);
+
+                    Cliente cliente = (Cliente) getIntent().getSerializableExtra("cliente");
+
+                    intent.putExtra("cliente",cliente);
+
+                    startActivity(intent);
+                }
             }
         });
+    }
+
+    public void alert(String mensagem) {
+        Toast.makeText(this, mensagem, Toast.LENGTH_LONG).show();
     }
 }

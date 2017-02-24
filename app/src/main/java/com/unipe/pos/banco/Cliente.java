@@ -12,10 +12,12 @@ public class Cliente implements Serializable {
     private String nome;
     private String email;
     private String senha;
+    private String login;
 
-    public Cliente(String CPF, String nome, String email,String senha){
+    public Cliente(String CPF, String nome, String login,String email, String senha) {
         this.CPF = CPF;
         this.nome = nome;
+        this.login = login;
         this.email = email;
         this.senha = senha;
     }
@@ -50,5 +52,13 @@ public class Cliente implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 }

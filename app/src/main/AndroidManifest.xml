@@ -28,7 +28,8 @@
 
         <activity android:name=".RealizarSaqueActivity" />
         <activity android:name=".TransferirActivity" />
-        <activity android:name=".DepositarActivity"></activity>
+        <activity android:name=".DepositarActivity" />
+        <activity android:name=".NovaContaActivity"></activity>
     </application>
 
 </manifest>

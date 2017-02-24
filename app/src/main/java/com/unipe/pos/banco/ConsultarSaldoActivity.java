@@ -24,7 +24,11 @@ public class ConsultarSaldoActivity extends AppCompatActivity {
 
         listarContasDoCliente = (ListView) findViewById(R.id.listarContasId);
 
-        ArrayList<Conta> contas = (ArrayList<Conta>) getIntent().getSerializableExtra("contas");
+        RepositorioConta repositorioConta = RepositorioConta.getInstance();
+        Cliente cliente = (Cliente) getIntent().getSerializableExtra("cliente");
+
+        System.out.print(cliente.getNome());
+        ArrayList<Conta> contas = repositorioConta.getContas(cliente);
 
         ArrayAdapter<Conta> adapter = new ArrayAdapter<Conta>(this,
                 android.R.layout.simple_list_item_1,contas);

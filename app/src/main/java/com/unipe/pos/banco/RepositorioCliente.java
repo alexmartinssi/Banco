@@ -9,9 +9,12 @@ import java.util.ArrayList;
 public class  RepositorioCliente {
 
     private static RepositorioCliente instance;
+    private static ArrayList<Cliente> clientes;
 
     // Construtor privado (suprime o construtor público padrão).
-    private RepositorioCliente() {}
+    private RepositorioCliente() {
+        clientes = new ArrayList<Cliente>();
+    }
 
     // Método público estático de acesso único ao objeto!
     public static RepositorioCliente getInstance() {
@@ -20,7 +23,7 @@ public class  RepositorioCliente {
         return instance;
     }
 
-    private static ArrayList<Cliente>  clientes = new ArrayList<Cliente>();
+
 
 
     public boolean existeCliente(String cpf){
@@ -54,7 +57,7 @@ public class  RepositorioCliente {
 
         for (Cliente c: clientes) {
 
-            if((login.equals(c.getNome()) ||  login.equals(c.getEmail())) && senha.equals(c.getSenha())){
+            if((login.equals(c.getLogin()) ||  login.equals(c.getEmail())) && senha.equals(c.getSenha())){
                 return c;
             }
         }

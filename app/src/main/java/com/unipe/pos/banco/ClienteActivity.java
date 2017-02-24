@@ -13,6 +13,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 public class ClienteActivity extends AppCompatActivity {
 
     private EditText nome;
+    private EditText login;
     private EditText CPF;
     private EditText email;
     private EditText senha;
@@ -31,9 +32,10 @@ public class ClienteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cliente);
 
         nome = (EditText) findViewById(R.id.nomeId);
+        login = (EditText) findViewById(R.id.loginId);
         CPF = (EditText) findViewById(R.id.cpfId);
         email = (EditText) findViewById(R.id.emailId);
-        senha = (EditText) findViewById(R.id.valorId);
+        senha = (EditText) findViewById(R.id.senhaId);
         confirmarSenha = (EditText) findViewById(R.id.confirmarSenhaId);
         cadastraConta = (Button) findViewById(R.id.cadastrarContaId);
 
@@ -42,6 +44,7 @@ public class ClienteActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 String nomeCliente = nome.getText().toString();
+                String loginCliente = login.getText().toString();
                 String CPFCliente = CPF.getText().toString();
                 String emailCliente = email.getText().toString();
                 String senhaCliente = senha.getText().toString();
@@ -53,6 +56,11 @@ public class ClienteActivity extends AppCompatActivity {
 
                 else if (nomeCliente.isEmpty()) {
                     alert("Preencha o campo nome.");
+
+                }
+
+                else if (loginCliente.isEmpty()) {
+                    alert("Preencha o campo login.");
 
                 }
 
@@ -71,29 +79,21 @@ public class ClienteActivity extends AppCompatActivity {
                 else if (!confirmarSenhaCliente.equals(senhaCliente)) {
                     alert("O campo Confirmar Senha não confere com a senha digitada acima.");
                 }else{
-                    Cliente cliente = new Cliente(CPFCliente, nomeCliente, emailCliente, senhaCliente);
+                    Cliente cliente = new Cliente(CPFCliente, nomeCliente,loginCliente, emailCliente, senhaCliente);
 
-                    System.out.println(cliente.getNome());
+                    RepositorioCliente repositorioCliente = RepositorioCliente.getInstance();
+                    RepositorioConta repositorioConta = RepositorioConta.getInstance();
 
-                    RepositorioCliente rCliente = RepositorioCliente.getInstance();
-                    RepositorioConta rConta = RepositorioConta.getInstance();
-
-                    if (rCliente.existeCliente(cliente.getCPF())) {
+                    if (repositorioCliente.existeCliente(cliente.getCPF())) {
                         alert("Cliente cadastrado.");
                     } else {
-                        rCliente.cadastrar(cliente);
-
-                        System.out.println(rCliente.getClientes());
+                        repositorioCliente.cadastrar(cliente);
 
                         double valorPadraoDepositado = 10.0;
 
-                        System.out.println(rCliente.getCliente(cliente.getCPF()));
+                        Conta conta = new Conta(valorPadraoDepositado, repositorioCliente.getCliente(cliente.getCPF()));
 
-                        Conta conta = new Conta(valorPadraoDepositado, rCliente.getCliente(cliente.getCPF()));
-
-                        System.out.println(conta.getNumConta());
-
-                        rConta.inserirConta(conta);
+                        repositorioConta.inserirConta(conta);
 
                         Intent intent = new Intent(ClienteActivity.this, LoginActivity.class);
 

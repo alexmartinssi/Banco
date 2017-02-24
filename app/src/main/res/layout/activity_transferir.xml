@@ -1,94 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_extrato"
+    android:id="@+id/activity_transferir2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorBackgroundFloating"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.unipe.aluno.dev.bancoapp.Extrato"
-    android:background="?attr/colorButtonNormal"
-    android:orientation="vertical">
+    android:weightSum="1"
+    tools:context="com.unipe.pos.banco.TransferirActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
+    <RelativeLayout
+        android:layout_width="374dp"
+        android:layout_height="47dp"
+        android:orientation="horizontal"
+        android:layout_weight="0.15">
 
         <TextView
-            android:text="Conta origem:       "
+            android:id="@+id/contaOrigem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/email"
-            android:textSize="20dp"
-            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="30dp" />
+            android:layout_marginBottom="35dp"
+            android:text="Conta origem:         "
+            android:textSize="20dp" />
 
         <EditText
+            android:id="@+id/contaOrigemId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:ems="8"
-            android:id="@+id/numContaId"
             android:background="?attr/colorControlHighlight"
-            android:layout_marginTop="29dp"
-            android:layout_below="@+id/email"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:ems="8"
+            android:inputType="number"
+            android:layout_alignBottom="@+id/contaOrigem"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="47dp"
+            android:layout_marginEnd="47dp" />
 
 
-    </LinearLayout>
+    </RelativeLayout>
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="374dp"
         android:layout_height="wrap_content"
+        android:layout_weight="0.23"
+        android:layout_marginTop="5dp"
         android:orientation="horizontal">
 
 
         <TextView
-            android:text="Conta destino:      "
+            android:id="@+id/contaDestino"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/email"
-            android:textSize="20dp"
-            android:layout_alignParentTop="true"
+            android:layout_alignBottom="@+id/contaDestinoId"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="30dp" />
+            android:layout_weight="1"
+            android:text="Conta Destino:      "
+            android:textSize="20dp" />
 
         <EditText
+            android:id="@+id/contaDestinoId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
+            android:background="?attr/colorControlHighlight"
             android:ems="8"
+            android:inputType="numberDecimal"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/contaDestino"
+            android:layout_toEndOf="@+id/contaDestino" />
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="374dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.23"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/valor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/valorId"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_weight="1"
+            android:text="Informe o valor:      "
+            android:textSize="20dp" />
+
+        <EditText
             android:id="@+id/valorId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="?attr/colorControlHighlight"
-            android:layout_marginTop="29dp"
-            android:layout_below="@+id/email"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:ems="8"
+            android:inputType="numberDecimal"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="42dp"
+            android:layout_marginEnd="42dp" />
 
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <Button
-        android:text="Transferir"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="347dp"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="140dp"
-        android:id="@+id/button1"
-        android:layout_marginTop="60dp"
-        style="@android:style/Theme.Black"
-        android:background="@android:color/background_dark"
-        android:textColor="@android:color/background_light"
-        android:layout_below="@+id/numContaId" />
+        android:layout_weight="0.23"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/botaoTransferirId"
+            android:layout_width="369dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:background="@color/colorPrimary"
+            android:text="Transferir"
+            android:textColor="@android:color/background_light" />
+
+    </RelativeLayout>
 
 
 </LinearLayout>

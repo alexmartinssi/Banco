@@ -59,7 +59,7 @@ public class Conta implements Serializable {
 
     @Override
     public String toString() {
-        return "Número da Conta: " + this.numConta + "\nSaldo: " +
+        return "Número da Conta: " + this.numConta + "\nSaldo: R$" +
                 this.valor;
     }
 

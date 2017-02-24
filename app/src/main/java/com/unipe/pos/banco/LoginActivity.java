@@ -16,7 +16,7 @@ public class LoginActivity extends AppCompatActivity{
     private EditText senha;
     private Button botaoLogar;
     private Button botaoCriarConta;
-    private RepositorioCliente r;
+    private RepositorioCliente repositorioCliente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity{
 
                 String loginCliente = login.getText().toString();
                 String senhaCliente = senha.getText().toString();
-                r = RepositorioCliente.getInstance();
+                repositorioCliente = RepositorioCliente.getInstance();
 
                 if(loginCliente.isEmpty()){
                     alert("Preencha o campo login.");
@@ -47,19 +47,15 @@ public class LoginActivity extends AppCompatActivity{
                     alert("Preencha o campo senha");
                 } else {
 
-                    Cliente cliente = r.existeLogin(loginCliente, senhaCliente);
+                    Cliente cliente = repositorioCliente.existeLogin(loginCliente, senhaCliente);
 
                     if (cliente == null) {
                         alert("Login ou senha inválido.");
                     } else {
 
-                        RepositorioConta repositorioConta = RepositorioConta.getInstance();
-
-                        ArrayList<Conta> contas = repositorioConta.getContas(cliente);
-
                         Intent intent = new Intent(LoginActivity.this, BancoActivity.class);
 
-                        intent.putExtra("contas", contas);
+                        intent.putExtra("cliente",cliente);
 
                         startActivity(intent);
 
