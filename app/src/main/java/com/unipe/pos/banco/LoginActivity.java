@@ -4,60 +4,75 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity{
 
-    private EditText email;
+    private EditText login;
     private EditText senha;
-    private ImageView botaoCliente;
+    private Button botaoLogar;
+    private Button botaoCriarConta;
+    private RepositorioCliente r;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        botaoCliente = (ImageView) findViewById(R.id.botaoClienteId);
-
-        email = (EditText) findViewById(R.id.emailId);
-        senha = (EditText) findViewById(R.id.senhaId);
+        botaoLogar = (Button) findViewById(R.id.logarId);
+        botaoCriarConta = (Button) findViewById(R.id.criarContaId);
 
 
-        botaoCliente.setOnClickListener(new View.OnClickListener() {
+        login = (EditText) findViewById(R.id.loginId);
+        senha = (EditText) findViewById(R.id.valorId);
+
+
+        botaoLogar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                String emailCliente = email.getText().toString();
+                String loginCliente = login.getText().toString();
                 String senhaCliente = senha.getText().toString();
-                RepositorioCliente r = new RepositorioCliente();
+                r = RepositorioCliente.getInstance();
 
-                if(emailCliente.isEmpty()){
-                    alert("Preencha o campo nome.");
+                if(loginCliente.isEmpty()){
+                    alert("Preencha o campo login.");
                 }
 
-                else if(senhaCliente.isEmpty()){
+                else if (senhaCliente.isEmpty()) {
                     alert("Preencha o campo senha");
+                } else {
+
+                    Cliente cliente = r.existeLogin(loginCliente, senhaCliente);
+
+                    if (cliente == null) {
+                        alert("Login ou senha inválido.");
+                    } else {
+
+                        RepositorioConta repositorioConta = RepositorioConta.getInstance();
+
+                        ArrayList<Conta> contas = repositorioConta.getContas(cliente);
+
+                        Intent intent = new Intent(LoginActivity.this, BancoActivity.class);
+
+                        intent.putExtra("contas", contas);
+
+                        startActivity(intent);
+
+                    }
                 }
+            }
+        });
 
-                Cliente cliente = r.existeLogin(emailCliente,senhaCliente);
+        botaoCriarConta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-                if (cliente == null){
-                    alert("Login ou senha inválido ou não cadastrado.");
-                }else{
-
-                    Intent intent = new Intent(LoginActivity.this,BancoActivity.class);
-
-                    intent.putExtra("cliente", (Serializable) cliente);
-
-                    startActivity(intent);
-
-                }
-
+                startActivity(new Intent(LoginActivity.this,ClienteActivity.class));
 
             }
         });

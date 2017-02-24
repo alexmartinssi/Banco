@@ -1,14 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_banco"
+    android:id="@+id/activity_menu_opcoes"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorBackgroundFloating"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.unipe.pos.banco.BancoActivity">
+    tools:context="com.unipe.pos.banco.BancoActivity"
+    android:weightSum="1">
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/logo_banco"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/logo_banco" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="244dp"
+        android:orientation="vertical"
+        android:weightSum="1"
+        android:layout_weight="0.55">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="103dp"
+            android:layout_marginTop="50dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/saque"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sacar"
+                android:gravity="center"
+                android:layout_marginRight="54dp"
+                android:layout_marginEnd="54dp"
+                android:layout_below="@+id/saqueId"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <ImageView
+                android:id="@+id/saqueId"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/saque_icon"
+                android:adjustViewBounds="false"
+                android:background="@drawable/image_border"
+                android:layout_marginRight="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:id="@+id/depositar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Depositar"
+                android:gravity="center"
+                android:layout_marginLeft="70dp"
+                android:layout_marginStart="40dp"
+                android:layout_below="@+id/depositarId"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <ImageView
+                android:id="@+id/depositarId"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:background="@drawable/image_border"
+                app:srcCompat="@drawable/pagar"
+                android:gravity="center"
+                android:layout_alignParentTop="true"
+                android:layout_alignLeft="@+id/depositar"
+                android:layout_alignStart="@+id/depositar" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:orientation="horizontal"
+            android:layout_weight="0.61">
+
+            <ImageView
+                android:id="@+id/consultarSaldoId"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:background="@drawable/image_border"
+                app:srcCompat="@drawable/saldo_icon"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="39dp"
+                android:layout_marginStart="39dp" />
+
+            <ImageView
+                android:id="@+id/tranferirId"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:background="@drawable/image_border"
+                app:srcCompat="@drawable/extrato"
+                android:layout_marginRight="34dp"
+                android:layout_marginEnd="34dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:id="@+id/transferir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Transferir"
+                android:gravity="center"
+                android:layout_below="@+id/tranferirId"
+                android:layout_alignLeft="@+id/tranferirId"
+                android:layout_alignStart="@+id/tranferirId"
+                android:layout_marginLeft="14dp"
+                android:layout_marginStart="14dp" />
+
+            <TextView
+                android:id="@+id/consultarSaldo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Consultar Saldo"
+                android:layout_below="@+id/consultarSaldoId"
+                android:layout_alignLeft="@+id/consultarSaldoId"
+                android:layout_alignStart="@+id/consultarSaldoId" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

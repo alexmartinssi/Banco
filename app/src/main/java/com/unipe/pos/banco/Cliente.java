@@ -1,10 +1,12 @@
 package com.unipe.pos.banco;
 
+import java.io.Serializable;
+
 /**
  * Created by alexmartins on 18/02/17.
  */
 
-public class Cliente {
+public class Cliente implements Serializable {
 
     private String CPF;
     private String nome;

@@ -8,32 +8,53 @@ import java.util.ArrayList;
 
 public class  RepositorioCliente {
 
-    private static ArrayList<Cliente>  clientes;
+    private static RepositorioCliente instance;
 
-    public RepositorioCliente(){
-        clientes = new ArrayList<Cliente>();
+    // Construtor privado (suprime o construtor público padrão).
+    private RepositorioCliente() {}
+
+    // Método público estático de acesso único ao objeto!
+    public static RepositorioCliente getInstance() {
+        if (instance == null)
+            instance = new RepositorioCliente();
+        return instance;
     }
+
+    private static ArrayList<Cliente>  clientes = new ArrayList<Cliente>();
+
 
     public boolean existeCliente(String cpf){
 
-        boolean f = true;
+        boolean existe = false;
 
         for (Cliente c: clientes) {
 
             if(cpf.equals(c.getCPF())){
-                f = false;
-                break;
+                existe = true;
+                return existe;
             }
         }
 
-        return f;
+        return existe;
     }
 
-    public Cliente existeLogin(String email, String senha){
+    public Cliente getCliente(String cpf){
 
         for (Cliente c: clientes) {
 
-            if(email.equals(c.getEmail()) && senha.equals(c.getSenha())){
+            if(cpf.equals(c.getCPF())){
+                return c;
+            }
+        }
+
+        return null;
+    }
+
+    public Cliente existeLogin(String login, String senha){
+
+        for (Cliente c: clientes) {
+
+            if((login.equals(c.getNome()) ||  login.equals(c.getEmail())) && senha.equals(c.getSenha())){
                 return c;
             }
         }
@@ -56,5 +77,13 @@ public class  RepositorioCliente {
                 break;
             }
         }
+    }
+
+    public void adicionarClientes(ArrayList<Cliente> clientes){
+        this.clientes = clientes;
+    }
+
+    public ArrayList<Cliente> getClientes(){
+        return clientes;
     }
 }

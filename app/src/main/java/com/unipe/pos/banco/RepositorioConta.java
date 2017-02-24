@@ -8,12 +8,20 @@ import java.util.ArrayList;
 
 public class RepositorioConta {
 
-    private static ArrayList<Conta>  contas;
+    private static RepositorioConta instance;
 
-    public RepositorioConta(){
+    // Construtor privado (suprime o construtor público padrão).
+    private RepositorioConta() {}
 
-        contas = new ArrayList<Conta>();
+    // Método público estático de acesso único ao objeto!
+    public static RepositorioConta getInstance() {
+        if (instance == null)
+            instance = new RepositorioConta();
+        return instance;
     }
+
+    private static ArrayList<Conta>  contas = new ArrayList<Conta>();
+
 
    public void inserirConta(Conta conta){
 
@@ -31,35 +39,27 @@ public class RepositorioConta {
         return f;
     }
 
-    public boolean existeLogin(String email, String senha){
+    public Conta getConta(Cliente cliente) {
 
-        boolean f = false;
-
-        for (Cliente c: clientes) {
-
-            if(email.equals(c.getEmail()) && senha.equals(c.getSenha())){
-                f = true;
-                break;
+        for(Conta conta : contas){
+            if(conta.getCliente().getCPF() == cliente.getCPF()){
+                return conta;
             }
         }
-
-        return f;
+        return null;
     }
 
-    public void cadastrar(Cliente c){
-        clientes.add(c);
-    }
+    public ArrayList<Conta> getContas(Cliente cliente) {
 
-    public void alterarCliente(String cpf, String nome, String email, String senha){
+        ArrayList<Conta>  contasDoCliente = new ArrayList<Conta>();
 
-        for (Cliente c: clientes) {
-
-            if(cpf.equals(c.getCPF())){
-                c.setNome(nome);
-                c.setEmail(email);
-                c.setSenha(senha);
-                break;
+        for(Conta conta : contas){
+            if(conta.getCliente().getCPF() == cliente.getCPF()){
+                contasDoCliente.add(conta);
             }
         }
+        return contasDoCliente;
     }
+
+    
 }

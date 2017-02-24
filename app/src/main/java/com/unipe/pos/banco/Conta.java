@@ -1,10 +1,12 @@
 package com.unipe.pos.banco;
 
+import java.io.Serializable;
+
 /**
  * Created by alexmartins on 18/02/17.
  */
 
-public class Conta {
+public class Conta implements Serializable {
 
     private static int contador = 1000;
     private int numConta;
@@ -53,6 +55,12 @@ public class Conta {
 
     public void transferir(Conta conta, double valor){
         conta.depositar(valor);
+    }
+
+    @Override
+    public String toString() {
+        return "Número da Conta: " + this.numConta + "\nSaldo: " +
+                this.valor;
     }
 
 
