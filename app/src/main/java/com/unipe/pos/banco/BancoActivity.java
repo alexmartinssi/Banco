@@ -1,16 +1,15 @@
 package com.unipe.pos.banco;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-
-import static com.unipe.pos.banco.RepositorioConta.*;
+import com.unipe.pos.banco.model.Cliente;
 
 public class BancoActivity extends AppCompatActivity{
 
@@ -21,7 +20,9 @@ public class BancoActivity extends AppCompatActivity{
     private TextView logout;
     private TextView login;
     private ImageView novaConta;
+    private ImageView clienteFoto;
     private Cliente cliente;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,9 +35,18 @@ public class BancoActivity extends AppCompatActivity{
         novaConta = (ImageView) findViewById(R.id.novaContaId);
         logout = (TextView) findViewById(R.id.sairId);
         login = (TextView) findViewById(R.id.loginId);
+        clienteFoto = (ImageView) findViewById(R.id.fotoId);
 
 
         cliente = (Cliente) getIntent().getSerializableExtra("cliente");
+
+        if (cliente.getPathPhoto() != null) {
+            Bitmap bitmap = BitmapFactory.decodeFile(cliente.getPathPhoto());
+            Bitmap bitmapReduce = Bitmap.createScaledBitmap(bitmap, 300, 300, true);
+            clienteFoto.setScaleType(ImageView.ScaleType.FIT_XY);
+            clienteFoto.setImageBitmap(bitmapReduce);
+        }
+
         login.setText(cliente.getLogin()+",");
 
         depositar.setOnClickListener(new View.OnClickListener() {

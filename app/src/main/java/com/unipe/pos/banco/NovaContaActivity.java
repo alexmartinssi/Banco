@@ -8,6 +8,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.unipe.pos.banco.model.Cliente;
+import com.unipe.pos.banco.model.Conta;
+import com.unipe.pos.banco.repository.RepositorioConta;
+
 public class NovaContaActivity extends AppCompatActivity {
 
     private EditText valor;
@@ -25,21 +29,21 @@ public class NovaContaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String valorParaAbrirAConta = valor.getText().toString();
+                String valorDepositado = valor.getText().toString();
 
 
-                if (valorParaAbrirAConta.isEmpty()) {
+                if (valorDepositado.isEmpty()) {
                     alert("Preencha o número da conta.");
                 }
 
 
                 Cliente cliente = (Cliente) getIntent().getSerializableExtra("cliente");
 
-                RepositorioConta repositorioConta = RepositorioConta.getInstance();
+                RepositorioConta repositorioConta = new RepositorioConta(NovaContaActivity.this);
 
-                Conta conta = new Conta(Double.parseDouble(valorParaAbrirAConta), cliente);
+                Conta conta = new Conta(Double.parseDouble(valorDepositado),cliente);
 
-                repositorioConta.inserirConta(conta);
+                repositorioConta.inserirConta(conta,NovaContaActivity.this);
 
                 alert("Conta cadastrada.");
 

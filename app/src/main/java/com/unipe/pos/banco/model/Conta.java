@@ -1,4 +1,4 @@
-package com.unipe.pos.banco;
+package com.unipe.pos.banco.model;
 
 import java.io.Serializable;
 
@@ -8,22 +8,27 @@ import java.io.Serializable;
 
 public class Conta implements Serializable {
 
-    private static int contador = 1000;
-    private int numConta;
+    private Long numConta;
     private double valor;
-    private Cliente cliente;
+    private Long cliente_id;
+
+    public Conta(Cliente cliente){
+        this.valor = 10.0;
+        this.cliente_id = cliente.getId();
+    }
 
     public Conta(double valor, Cliente cliente){
-        this.numConta = Conta.contador++;
         this.valor = valor;
-        this.cliente = cliente;
+        this.cliente_id = cliente.getId();
     }
 
     public Conta (){}
 
-    public int getNumConta() {
+    public Long getNumConta() {
         return numConta;
     }
+
+    public Long setNumConta(Long numConta) {return this.numConta = numConta; }
 
     public double getValor() {
         return valor;
@@ -33,12 +38,12 @@ public class Conta implements Serializable {
         this.valor = valor;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Long getCliente_id() {
+        return cliente_id;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setCliente_id(Long cliente_id) {
+        this.cliente_id = cliente_id;
     }
 
     public double ConsultaSaldo(){

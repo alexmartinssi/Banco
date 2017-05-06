@@ -8,7 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import com.unipe.pos.banco.model.Cliente;
+import com.unipe.pos.banco.repository.RepositorioConta;
 
 public class DepositarActivity extends AppCompatActivity {
 
@@ -40,9 +41,9 @@ public class DepositarActivity extends AppCompatActivity {
 
                 }else{
 
-                    RepositorioConta repositorioConta = RepositorioConta.getInstance();
+                    RepositorioConta repositorioConta = new RepositorioConta(DepositarActivity.this);
 
-                    boolean depositado = repositorioConta.depositar(Integer.parseInt(numeroConta), Double.parseDouble(valorDoDeposito));
+                    boolean depositado = repositorioConta.depositar(Long.parseLong(numeroConta), Double.parseDouble(valorDoDeposito),DepositarActivity.this);
 
                     if (depositado) {
                         alert("Deposito realizado.");

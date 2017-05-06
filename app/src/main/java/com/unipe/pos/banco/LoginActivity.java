@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import java.util.ArrayList;
+import com.unipe.pos.banco.model.Cliente;
+import com.unipe.pos.banco.repository.RepositorioCliente;
 
 public class LoginActivity extends AppCompatActivity{
 
@@ -25,11 +25,9 @@ public class LoginActivity extends AppCompatActivity{
 
         botaoLogar = (Button) findViewById(R.id.logarId);
         botaoCriarConta = (Button) findViewById(R.id.criarContaId);
-
-
         login = (EditText) findViewById(R.id.loginId);
         senha = (EditText) findViewById(R.id.valorId);
-
+        repositorioCliente = new RepositorioCliente(LoginActivity.this);
 
         botaoLogar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,7 +35,7 @@ public class LoginActivity extends AppCompatActivity{
 
                 String loginCliente = login.getText().toString();
                 String senhaCliente = senha.getText().toString();
-                repositorioCliente = RepositorioCliente.getInstance();
+
 
                 if(loginCliente.isEmpty()){
                     alert("Preencha o campo login.");

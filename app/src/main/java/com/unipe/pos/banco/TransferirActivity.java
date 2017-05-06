@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.unipe.pos.banco.model.Cliente;
+import com.unipe.pos.banco.repository.RepositorioConta;
+
 public class TransferirActivity extends AppCompatActivity {
 
     private EditText numContaOrigem;
@@ -42,9 +45,9 @@ public class TransferirActivity extends AppCompatActivity {
                     alert("Preencha o valor a ser transferido.");
                 } else {
 
-                    RepositorioConta repositorioConta = RepositorioConta.getInstance();
+                    RepositorioConta repositorioConta = new RepositorioConta(TransferirActivity.this);
 
-                    boolean tranferido = repositorioConta.transferir(Integer.parseInt(numeroContaOrigem), Integer.parseInt(numeroContaDestino), Double.parseDouble(valorDoDeposito));
+                    boolean tranferido = repositorioConta.transferir(Long.parseLong(numeroContaOrigem), Long.parseLong(numeroContaDestino), Double.parseDouble(valorDoDeposito),TransferirActivity.this);
 
                     if (tranferido) {
                         alert("Transferência realizada.");

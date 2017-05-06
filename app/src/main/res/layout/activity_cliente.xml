@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_cliente"
@@ -11,6 +11,37 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.unipe.pos.banco.ClienteActivity">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:weightSum="1">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="225dp">
+
+        <ImageView
+            android:id="@+id/studentInsert_imageViewPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="#00A8EC"
+            android:src="@drawable/person" />
+
+        <Button
+            android:id="@+id/studentInsert_buttonPhoto"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/this_background_button_camera" />
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/cpf"
@@ -24,7 +55,7 @@
 
     <EditText
         android:id="@+id/cpfId"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
@@ -33,7 +64,8 @@
         android:layout_below="@+id/cpf"
         android:background="?attr/colorButtonNormal"
         android:ems="10"
-        android:inputType="text|number" />
+        android:inputType="text|number"
+        android:layout_weight="0.14" />
 
     <TextView
         android:id="@+id/nome"
@@ -47,7 +79,7 @@
 
     <EditText
         android:id="@+id/nomeId"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
@@ -70,7 +102,7 @@
 
     <EditText
         android:id="@+id/loginId"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
@@ -93,7 +125,7 @@
 
     <EditText
         android:id="@+id/emailId"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
@@ -116,7 +148,7 @@
 
     <EditText
         android:id="@+id/senhaId"
-        android:layout_width="wrap_content"
+        android:layout_width="363dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
@@ -139,7 +171,7 @@
 
     <EditText
         android:id="@+id/confirmarSenhaId"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
@@ -152,7 +184,7 @@
 
     <Button
         android:id="@+id/cadastrarContaId"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
@@ -164,13 +196,7 @@
         android:text="Cadastrar"
         android:textColor="@android:color/background_light" />
 
-    <TextView
-        android:text="Cadastro de Conta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/tituloId" />
+    </LinearLayout>
 
 
-</RelativeLayout>
+</ScrollView>

@@ -1,6 +1,13 @@
-package com.unipe.pos.banco;
+package com.unipe.pos.banco.repository;
+
+import android.content.Context;
+
+import com.unipe.pos.banco.dao.BancoDAO;
+import com.unipe.pos.banco.model.Cliente;
+import com.unipe.pos.banco.model.Conta;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by alexmartins on 18/02/17.
@@ -9,22 +16,15 @@ import java.util.ArrayList;
 public class  RepositorioCliente {
 
     private static RepositorioCliente instance;
-    private static ArrayList<Cliente> clientes;
+    private static List<Cliente> clientes;
+    private RepositorioConta repositorioConta;
 
-    // Construtor privado (suprime o construtor público padrão).
-    private RepositorioCliente() {
-        clientes = new ArrayList<Cliente>();
+    public RepositorioCliente(Context context) {
+
+        BancoDAO bancoDAO = new BancoDAO(context);
+        clientes = bancoDAO.readClients();
+        bancoDAO.close();
     }
-
-    // Método público estático de acesso único ao objeto!
-    public static RepositorioCliente getInstance() {
-        if (instance == null)
-            instance = new RepositorioCliente();
-        return instance;
-    }
-
-
-
 
     public boolean existeCliente(String cpf){
 
@@ -65,8 +65,25 @@ public class  RepositorioCliente {
         return null;
     }
 
-    public void cadastrar(Cliente c){
-        clientes.add(c);
+    public boolean cadastrar(Cliente c, Context context){
+
+        if(verificarCPF(c)){
+
+            BancoDAO bancoDAO = new BancoDAO(context);
+            bancoDAO.createClient(c);
+            clientes = bancoDAO.readClients();
+            bancoDAO.close();
+
+            Conta conta = new Conta(getCliente(c.getCPF()));
+            repositorioConta = new RepositorioConta(context);
+            repositorioConta.inserirConta(conta,context);
+
+            return true;
+        }
+
+
+
+        return false;
     }
 
     public void alterarCliente(String cpf, String nome, String email, String senha){
@@ -86,7 +103,11 @@ public class  RepositorioCliente {
         this.clientes = clientes;
     }
 
-    public ArrayList<Cliente> getClientes(){
+    public List<Cliente> getClientes(){
         return clientes;
+    }
+
+    public boolean verificarCPF(Cliente cliente){
+        return cliente.isCPF(cliente.getCPF());
     }
 }

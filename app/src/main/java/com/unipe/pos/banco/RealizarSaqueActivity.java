@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.unipe.pos.banco.model.Cliente;
+import com.unipe.pos.banco.repository.RepositorioConta;
+
 public class RealizarSaqueActivity extends AppCompatActivity {
 
     private EditText numConta;
@@ -38,14 +41,14 @@ public class RealizarSaqueActivity extends AppCompatActivity {
 
                 } else {
 
-                    RepositorioConta repositorioConta = RepositorioConta.getInstance();
+                    RepositorioConta repositorioConta = new RepositorioConta(RealizarSaqueActivity.this);
 
-                    boolean saqueRealizado = repositorioConta.retirar(Integer.parseInt(numeroConta), Double.parseDouble(valorDoSaque));
+                    boolean saqueRealizado = repositorioConta.retirar(Long.parseLong(numeroConta), Double.parseDouble(valorDoSaque),RealizarSaqueActivity.this);
 
                     if (saqueRealizado) {
                         alert("Saque realizado.");
                     } else {
-                        alert("Falha no saque.");
+                        alert("Você não possui saldo suficiente para realizar o saque.");
                     }
 
                     Intent intent = new Intent(RealizarSaqueActivity.this, BancoActivity.class);
